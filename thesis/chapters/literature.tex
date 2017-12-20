@@ -1,0 +1,260 @@
+
+\section{Panel Data Format}
+
+
+The panel data format has been of great interest to the field of macroeconomics and beyond, largely due to the increased degrees of freedom that the format offers \citep{hsiao}. Traditionally, data was presented either as a single time series or a large cross-sections, both being one-dimensional. The issue with these one-dimensional formats is the limit of information either of them can convey. For example, if one wished to observe the impact of an event (such as the introduction of a social policy) on a number of variables (such as macroeconomic indicators), one could either measure the change in each variable individually as a separate time series, or only plot the cross section of the variables at a single point in time. This limitation is overcome by introducing an additional dimension to the data, allowing for both a time and cross-section element, which is particularly well suited to macroeconomic analysis where a wide variety of indicators are tracked over time \citep{hsiao}. As a result, the panel data format is far more powerful when compared to one-dimensional data \citep{hsiao}. The panel data format was originally developed for survey data, to collect a number of variables across several individuals \citep{smith}.  It allows for a more accurate inference of model parameters, controlling the impact of omitted variables, and generating more accurate predictions for individual outcomes by pooling the data \citep{hsiao}. As the data for this work consists of concurrent samples from the same population over time, placing it in a panel data format will allow for more power when performing statistical tests of making inferences, taking advantage of the additional samples to more accurately approximate the population parameters \citep{smith}. % Furthermore, as the individual units of the data can be considered independent, it can be assumed that the central limit theorem can be used across the cross-sectional units, demonstrating that the limiting distribution of estimators is asymptotically normal.
+
+
+\section{Stationarity}
+
+
+Stationarity of data is an important consideration before making any inferences and/or predictions about the underlying processes, as a non-stationary process with a unit root will be purely stochastic and will not follow a pattern \citep{dickey1986unit}. Stationarity can be split into two forms: strict stationarity or trend stationarity. Strict stationarity states that a process will oscillate over a mean of zero as $T \to \infty$ with a constant variance. Trend stationarity relaxes the zero-mean assumption, and only requires that the process oscillates over a trend. Both forms require a constant variance over $T$, however. In this work, a process will be considered "stationary" if it meets the requirements of trend stationarity. A more concrete way to describe stationarity is to consider the stochastic term in the equation, $\epsilon_t$. $\epsilon_t$ is assumed to be i.i.d. with a mean of 0 and a standard deviation of 1 ($N(0,1)$), meaning that a series described by:
+
+\begin{equation}
+	y_t = \epsilon_t
+\end{equation}
+
+should be tend towards zero as $T \to \infty$. When an autoregressive term in introduced, however, the series begins change, depending on the value of $\rho$. An autoregressive equation can be written as follows:
+
+\begin{equation}
+y_t = \rho Y_{t-1} + \epsilon_t
+\end{equation}
+
+Note that in this case, if $\rho < 1 $ and $T \to \infty$, the series will remain stationary around a zero mean (note that this is strict stationarity). The first difference of the process is described below:
+
+\begin{equation}
+	\Delta y_t = (\rho - 1) y_{t-1} + \epsilon_t
+\end{equation}
+
+In the case of $\rho < 1$, the differenced process retains a deterministic component ($y_{t-1}$), and is stationary around a constant mean. If $\rho = 1$, then the deterministic component turns to zero and the only component left is the stochastic component, and the process becomes non-stationary, as the integrated process ($y_t$) will effectively become $y_t = \sum_{i=1}^{T}\epsilon_t$, where the variance is non-constant, thus violating the stationarity assumption. All stationary tests therefore attempt to correctly specify the $\rho$ value in the autoregressive process, in order to determine if the process is indeed stationary around zero (or a level or trend) or has a unit root, in which case it can also be described as being integrated to the order one, or I(0).
+
+\subsection{Augmented Dickey-Fuller}
+
+The first major unit root test introduced was the Dickey-Fuller (DF) test, which tested a null hypothesis of a unit root in the series versus an alternative hypothesis of no unit root \citep{df}. This test assumed that the series followed the form expressed in figure 2.3.
+
+Another assumption of this test is that the series is zero-mean and that the lag order is known. Both assumptions are limiting for real-world application, and therefore an augmented version (ADF) was proposed \citep{said1984testing}. This version offered an additional two models: one with a drift (2.4) and the other with a drift and trend (2.5).
+
+\begin{equation}
+y_t = \alpha + \rho y_{t-1} + \epsilon_t
+\end{equation}
+
+\begin{equation}
+y_t = \alpha + \beta t + \rho y_{t-1} + \epsilon_t
+\end{equation}
+
+The procedure for the Augmented Dickey-Fuller is as follows. First, a regression is estimated where the lag order is set so that the $\epsilon_t$ terms are uncorrelated. The selection of the lag order is perhaps the most important part of the test, as if the lags are too few, the errors will have serial correlation while if the lags are too many, the test will lose power \citep{hlouskova}. One such way of selecting the appropriate lag order was detailed by \citet{ng1995unit} and their method is as follows: a value for the maximum permissible lag order is chosen arbitrarily, and then regressions are performed sequentially from that value to a lag order of zero. If the absolute value of the t-statistic of the last lagged difference ($\Delta y_{t-i}$) is greater than 1.6, the procedure is halted, the current lag order is considered correct, and the unit root test is performed. An approach for selecting the maximum permissible lag order was suggested by \citet{schwert}, where the value is set as:
+
+\begin{equation}
+P_{max} = 12 * (\cfrac{T}{100})^{\cfrac{1}{4}}.
+\end{equation}
+
+
+\subsection{Phillips-Perron}
+
+Another unit root test was proposed by \citet{pp}. This test was remarkably similar to the Augmented Dickey Fuller test, except for in the way that it dealt with serial correlation. While the ADF uses a parametric autoregression to find the structure of errors, the Phillips-Perron test corrects the initial test statistic to account for the possible presence of serial correlation. As a result, the Phillips-Perron test is non-parametric, not requiring the specification of a lag structure, but is asymptotic, meaning that under finite samples will perform worse than the Augmented Dickey-Fuller, \citep{davidson2004econometric}. The null hypothesis for the Phillips-Perron, as with the Augmented Dickey-Fuller, is the presence of a unit root, versus an alternative of a stationary time series \citep{pp}.
+
+\subsection{Kwiatkowski-Phillips-Schmidt-Shin}
+
+Compared to the Phillips-Perron and the (Augmented) Dickey-Fuller, the Kwiatkowski-Phillips-Schmidt-Shin test has a null hypothesis of stationarity, with the alternative being unit root \citep{kpss}. Also unlike the Dickey-Fuller or Phillips-Perron tests, the data-generating process form is slightly different, being expressed as:
+
+\begin{equation}
+y_t = \xi_t + \epsilon_t
+\end{equation}
+
+The $\xi_t$ is a random walk while $\epsilon_t$ is stationary. In addition:
+
+\begin{equation}
+y_t = \xi_t + \epsilon_t
+\end{equation}
+
+Where $v$ is i.i.d with a mean of 0 and standard deviation equal to $\sigma^2$. If the variance is zero, in other words if $\sigma^2 = 0$, then $\theta_t = \theta_0$ for all $t$ and the process $y_t$ is stationary.
+
+\section{Panel Data Stationarity}
+
+Examining stationarity in panel data as opposed to time series data presents a number of challenges, the chief of which is the specification of the tests. With a single time series test, the series is either considered stationary or not stationary, which is not a problem. With panel data, however, the possibilities are slightly more complex: a panel can have all members be stationary, some be stationary, or none be stationary. This presents a problem for the practical use of a test.\\ If we consider two panel data unit root tests, they may both have a null hypothesis of all the series having a unit root, but they may have different alternative hypothesis: one may state that all the series are stationary (referred to as the homogeneous case), the other that at least one of the series is stationary (the heterogeneous case). In practice, it is generally accepted that macro-economic panel data usually consist of a mix of stationary and non-stationary time series \citep{hurlin}, which is why a major consideration with panel data is the specification of the alternative hypothesis: are all members of the panel stationary or just majority? \\Another challenge with panel data unit root tests is the issue of heterogeneous or homogeneous $\rho$ coefficients. Some tests are flexible and allow heterogeneity in the coefficients while others (such as the Levin-Lin-Chu) do not. The preference for either model must be governed by assumptions about the data. If the data consists of samples from the same population (as it is in the case of this work) it may be wise to force the same $\rho$ coefficient on all the individuals. However, in the case of distinct variables (such as with macro-economic panels), allowing heterogeneity in the $\rho$ coefficients may produce a better model. \\Another issue which affects panel data unit root tests is the presence (or lack thereof) of cross-sectional correlation in the data. A critical assumption of many of the early proposed panel data tests was that the individuals were not correlated, but in a practical setting this was severely limiting as many applications where the panel data format was used it was used specifically because the individual components had some degree of correlation \citep{panic04}. Over time, new tests robust to cross-sectional dependence were developed, and the literature splits the panel data unit root tests into two “generations,” the first which assumes cross-sectional independence and the second which does not.
+
+\subsection{First Generation Tests}
+The first generation tests can be divided into two rough categories: the first which combines statistics of individual tests (such as \citet{mw} or  \citet{ips}) or those which create a combined statistic from the entire panel (such as the \citet{llc}). The main point of focus with the first generation, however, is whether the alternative hypothesis is homogeneous or heterogeneous, which is to say if the alternative states that the entire panel is stationary, or if only some of the panel is stationary.
+
+\subsubsection{Maddala and Wu 1999}
+
+Maddala-Wu 1999 proposed a test which was based on the methodology first proposed by \citet{fisher}. This method involves combining the p-values of the individual unit root tests done on each individual in the panel. This test is robust to heterogeneous lag orders, $\rho$ values, even choice of test, as only the p-value was necessary. Crucially, this test is implementable on unbalanced panels. The test statistic is given by:
+
+\begin{equation}
+P_{MW} = -2 \sum_{i=1}^{N} \log p_i
+\end{equation}
+
+The test statistic follows a $\chi$-squared distribution with $2N$ degrees of freedom, as $T \to \infty$. The simplicity of this test and its robustness to a wide variety of factors (as stated above) make it very attractive \citep{banerjee1999panel}.
+
+\subsubsection{Harris and Tzavalis 1999}
+
+The Harris and Tzavalis test is unique among the first generation of panel unit root tests because while most are designed so that $T \to \infty$ quicker or at the same rate that $N \to \infty$, the HT test considers the case where $T$ is fixed and $N \to \infty$ \citep{harris1999inference}. The null hypothesis is that the DGP has a unit root, and the distribution under the null hypothesis is unaffected by the nuisance parameters (trend and intercept). Harris and Tzavalis show that the limiting distributions of the test statistics are normal and that their convergence rate is the same as for the case of stationary panel data ($\sqrt{N}$).
+
+\subsubsection{Hadri 2000}
+
+The test proposed by Hadri is an adaptation of the KPSS test for the panel format \citep{hadri2000testing}. Unlike all the other first generation tests, the null hypothesis here is that the panel is stationary, with an alternative of a unit root. The test has two models; either the process is stationary around a deterministic level or the process is stationary around a deterministic trend.
+
+
+
+
+
+In these models, $r_{i,0}$ is the heterogeneous intercept, $\beta$ is the time trend coefficient while $\epsilon_{i,t}$ is $\sum_{j=1}^{T} u_{i,j}+ \epsilon_{i,j}$. $r_{i,t}$  is a random walk and is “i.i.d.” with a mean of zero and a standard deviation of $\sigma_u^2$. Under the null hypothesis, $\sigma_u^2 = 0$ and $\epsilon_{i,t}$ is stationary. If $\sigma_u^2 \neq 0$, then $\epsilon_{i,t}$ is non-stationary and the $r_{i,t}$ term from the equations above is a random walk.  The test statistic for Hadri is:
+
+\begin{equation}
+Z_\mu = \cfrac{\sqrt{N}-E[\int_{0}^{1}V(r)^2dr]}{\sqrt{V[\int_{0}^{1}V(r)^2dr]}} ,
+\end{equation}
+
+where
+
+\begin{equation}
+LM = \cfrac{1}{\sigma_{\epsilon}^2} * \cfrac{1}{NT^2}(\sum_{i=1}^{N} . \sum_{t=1}^{T} S^2_{i,t})
+\end{equation}
+
+\subsubsection{Choi 2001}
+
+This test is an expansion of the original Maddala-Wu 1999 test \citep{choi2001unit}. \citet{choi2001unit} proposes a standardized statistic for panels where the N dimension is large, which is given below:
+
+\begin{equation}
+Z_{MW} = \cfrac{\sqrt{N}\{N^{-1}P_{MW}-E[-2\log(p_i)]\}}{\sqrt{Var[-2log(p_i)]}} = \cfrac{\sum_{i=1}^{N}+N}{\sqrt{N}}
+\end{equation}
+
+Under the unit root hypothesis and assuming that the cross-section is independent, this statistic converges to a standard normal distribution.
+
+\subsubsection{Levin et al 2002}
+\citet{llc} proposed different panel data test, building on the model they developed (as Levin and Lin) in 1997, which tested the null hypothesis of a unit root against a heterogeneous alternative of stationarity in all the data individuals \citep{llc}. The models which are considered by \citet{llc} are the zero-mean, intercept and trend with intercept.
+
+The procedure begins with an Augmented Dickey-Fuller test on all the individuals to select the lag order and coefficients $\cite{df}$. Then, two sets of residuals are saved, one from regressing ($\Delta y_{i,t-1}$ on $\sum_{j=1}^{L} \Delta y_{i,t-j} + \alpha + \beta t$ where $L$ is the number of lags specified) that becomes $\bar{e}$, the other from regressing $y_{i,t-1}$ on $\sum_{j=1}^{L} \Delta y_{i,t-j} + \alpha + \beta t$) that becomes $\bar{f}$. The residuals are standardized using the standard error, $\sigma$ which is calculated from regressing $e_t$ on $f_t$ , creating the standardized residuals, $\hat{e}$ and $\hat{f}$. Next, the ratio of long-run variance to the short-run variance of $\Delta y_{i,t}$ is estimated. Long-run variance is defined as:
+
+\begin{equation}
+\sigma^2_{ui,LR} = \sigma^2_{ui} + 2 * \sum_{j=1}^{\infty}E(u_{it}u_{i,t-j})
+\end{equation}
+
+which leads to the estimated expression:
+
+\begin{equation}
+\hat{\sigma}^2_{ui,LR} = \cfrac{1}{T}\sum_{t=1}^{T}\hat{u}^2_{it} + \cfrac{2}{T} \sum_{j=1}^{L}\omega (j, L) \sum_{t=j+1}^{T} \hat{u}_{it}\hat{u}_{i,t-j}
+\end{equation}
+
+The individual ratio of long-run to short-run variance is therefore defined by:
+
+\begin{equation}
+\hat{s}^2_i = \hat{\sigma}^2_{ui,LR} / \hat{\sigma}^2_{ui}
+\end{equation}
+
+With:
+
+\begin{equation}
+\hat{\sigma}^2_{ui} = \cfrac{1}{T} \sum_{t=1}^{T} \hat{u}^2_{it}
+\end{equation}
+
+The test statistic is computed by the following formula:
+
+\begin{equation}
+\hat{\Phi} = \cfrac{\sum_{i=1}^{N}\sum_{t=p_i+2}^{T}\hat{e}_{it}\hat{f}_{it-1}}{\sum_{i=1}^{N}\sum_{t=p_i+2}^{T}\hat{f}^2_{it-1}}
+\end{equation}
+
+
+
+Ultimately, there are three separate cases for which a test statistic can be compared to a t-statistic distribution, the zero-mean, intercept and trend models. For the zero-mean model, it has been shown that the t-statistic is asymptotically N(0,1) (Hlouskova and Wagner, 2005). For the intercept and trend case, the t-statistic diverges and has to be normalized and re-centered so that it converges to a limiting distribution using the formula below:
+
+\begin{equation}
+t_{\phi}^*=\cfrac{t_{\phi}-N\tilde{T}\hat{S}_{NT}STD(\hat{\phi})\mu_{mT}}{\sigma_{mT}}
+\end{equation}
+
+
+
+\subsubsection{Im, Pesaran and Shin 2002}
+
+Im, Pesaran and Shin proposed a panel data test which considered the case of either intercept-only or intercept and trend DGP and allowed for individual-specific autoregressive structures.
+
+The test proposed by Im, Pesaran and Shin (hereafter known as IPS) is based on the Augmented Dickey-Fuller statistic similarly to the LLC. Unlike the LLC, however, IPS allow for heterogeneity with the $\rho$ coefficient in the alternative hypothesis $\cite{hurlin}$, therefore some of the individuals can have a unit root in the alternative hypothesis. The IPS model assumes either a model with a time trend and/or intercept. This test is somewhat similar to the Fisher-type tests proposed by Maddala and Wu (1999) and Choi (2001), where the data is not pooled, but rather the Augmented Dickey-Fuller statistic is averaged across the panel, which is expressed as:
+
+\begin{equation}
+\bar{t}_{NT} = \cfrac{1}{N}\sum_{i=1}^{N}t_{iT}(p_i,\beta_i) 
+\end{equation}
+
+The authors have shown that the distribution of the test statistic converges to a normal distribution as $T \to  \infty$ and then as $N \to \infty$ $\cite{hurlin}$. Specifically, as $T \to \infty$, the individual statistic converges to the Dickey-Fuller distribution, while as $N \to \infty$ then the $\bar{t}$ statistic tends to a normal distribution. The following equation is used to standardize the $\bar{t}$ statistic, denoted as $W_{\bar{t}}$ :
+
+\begin{equation}
+	W_{\bar{t}} = \cfrac{\sqrt{N}(\bar{t}_{NT}-N^{-1} \sum_{i=1}^{N}E[t_{iT}(p_i,0)|\epsilon = 0])}{\sqrt{N^{-1} \sum_{i=1}^{N}Var[t_{iT}(p_i,0)|\epsilon = 0]}}
+\end{equation}
+
+\subsection{Second Generation Tests}
+
+The second generation of panel unit root tests attempt to address the issue of cross-sectional dependence. Cross sectional dependence has been an often-cited issue with the first generation tests $\cite{hurlin}$, and it's presence is said to cause significant issues when dealing not just with stationarity tests, but it has even been found that the pooled Ordinary Least Squares estimator for a panel with cross sectional dependence offers little improvement over a single-equation OLS that ignores the dependence $\cite{phillips2003dynamic}$.
+
+\subsubsection{Bai and Ng 2001 \& 2004}
+Bai and Ng are credited with proposing the first test of unit root in panel data which took into account cross-sectional correlation $\cite{hurlin}$. The approach splits the process of each individual of the panel into three components: the first is the individual deterministic component which is heterogeneous, and the second “common component,” which is comprised of two vectors, one with the common factors $F_t$ and another with the factor weightings $\gamma$, and the third is the error term, $e_{i,t}$ $\cite{panic04}$. The deterministic component and the error term are unique for each individual in the panel, while the “common component” is shared across the panel and accounts for the cross-sectional process. The process is expressed as such:
+
+\begin{equation}
+y_{i,t} = D_i + \gamma_i'F_i + \epsilon_{i,t}
+\end{equation}
+
+A process, $y_{i,t}$ can be considered non-stationary if either one of the factors in the vector $F_t$ is non-stationary or if the error term is non-stationary. Due to the fact that if the process contains a large stationary component then checking the stationarity of the process as a whole becomes difficult, the procedure suggested by Bai and Ng tests the common and individual components separately. They call this procedure PANIC (Panel Analysis of Nonstationarity in the Idiosyncratic and Common components) $\cite{panic04}$. The major downside to this procedure is the fact that the common factors $F_t$ and error terms $\epsilon_{i,t}$ need to be estimated, and the power of the PANIC procedure depends on the estimators. Assuming that these estimators can be correctly estimated, however, this test can address the complaints regarding cross-sectional dependency typically expressed about the "traditional" panel unit root tests such as the Levin-Lin-Chu $\cite{hurlin}$.
+
+%\subsubsection{Phillips and Sul 2003}
+
+%The test proposed by Phillips and Sul
+
+
+\subsubsection{Moon and Perron 2004}
+
+A similar procedure to the one described by $\cite{panic04}$ was detailed by $\cite{moon2004testing}$. This procedure, similarly to $\cite{phillips2003dynamic}$, does not test the individual or common factors for the presence of a unit root. $\cite{moon2004testing}$ consider the following model:
+
+\begin{equation}
+y_{i,t} = \alpha_i + y_{i,t}^0 ,\\
+\end{equation}
+\begin{equation}
+y_{i,t}^0 = \phi  y_{i,t-1}^0 + \mu_{i,t} ,\\
+\end{equation}
+\begin{equation}
+\mu_{i,t} = \lambda' F_t + \epsilon_{i,t} .\\
+\end{equation}
+
+The $\phi$ component is tested for the presence of a unit root, and the hypotheses are as follows: \\
+\linebreak
+$H_0 : \phi = 1, \forall i = 1, ..., N$ \\
+$H_1 : \phi < 1$ for at least one individual $i$. \\
+\linebreak
+
+The approach that $\cite{moon2004testing}$ take here is to eliminate the effect of the common components on the series $y_{i,t}$ entirely before applying the unit root test. Thereby the cross-sectional dependencies are removed, which means that normal asymptotic distributions are obtained, similarly to $\cite{llc}$ or $\cite{ips}$. The exception being that the test statistics here are independent in the individual dimension. The authors propose two seperate test statistics which converge together as $T$ and $N$ tend to $\infty$ and $N/T$ tends to $0$. The test statistics are:
+
+\begin{equation}
+%t_a = T \sqrt{N} (\hat{\phi}_{\alpha}^{\plus} - 1)
+t_a = \cfrac{T \sqrt{N} (\hat{pool}_{\alpha}^{+} -1)}{t_b = {\sqrt{2 \gamma_{\epsilon}^4/\omega_{\epsilon}^4}}} \lim_{{T,N} \to \infty}^d N(0,1) ,
+\end{equation}
+
+\begin{equation}
+t_b = T \sqrt{N} ( \hat{\phi}_{pool}^{+} - 1) \sqrt{ \cfrac{1}{NT^2} trace(Z_{-1} QZ'_{-1} ) \cfrac{\omega^2_\epsilon}{\gamma_\epsilon^4}} \lim_{{T,N} \to \infty}^d N(0,1) .
+\end{equation}
+
+\subsubsection{Choi 2002}
+
+$\cite{choi2002combination}$ fundementally differs from the $\cite{moon2004testing}$ or $\cite{panic04}$ in that there is only one common factor to account for the cross sectional dependence. Additionally, Choi assumes that each time series shares a common time trend. The basic model is:
+
+\begin{equation}
+y_{i,t} = \alpha_i + \theta_t + v_{i,t},
+\end{equation}
+
+where
+
+\begin{equation}
+v_{i,t} = \sum_{j=1}^{p_i} d_{i,j} v_{i,t-j} + \epsilon_{i,t}.
+\end{equation}
+
+The approach described by $\cite{choi2002combination}$ essentially transforms the initial panel, then calculates three statistics, which are said to be all normally distributed as $ N \to \infty$ under the null hypothesis of a unit root. The three statistics are as follows:
+
+\begin{equation}
+P_m = - \cfrac{1}{\sqrt{N}} \sum_{i=1}^{N} [ \ln {p_i} + 1 ]
+\end{equation}
+
+\begin{equation}
+Z = - \cfrac{1}{\sqrt{N}} \sum_{i=1}^{N} [ \theta^{-1} (p_i)
+\end{equation}
+
+\begin{equation}
+L* = \cfrac{1}{\sqrt{\pi^2 N / 3}} \sum_{i=1}^{N} \ln ( \cfrac{p_i}{1 - p_i})
+\end{equation}
+
+
+

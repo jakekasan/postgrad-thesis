@@ -1,0 +1,51 @@
+This is BibTeX, Version 0.99d (TeX Live 2017)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+The top-level auxiliary file: main.aux
+The style file: agsm.bst
+Database file #1: chapters/ref.bib
+"{" immediately follows a field name---line 3 of file chapters/ref.bib
+ : year
+ :     {2002},
+I'm skipping whatever remains of this entry
+You've used 26 entries,
+            2909 wiz_defined-function locations,
+            805 strings with 8572 characters,
+and the built_in function-call counts, 79692 in all, are:
+= -- 12638
+> -- 1128
+< -- 1
++ -- 5777
+- -- 336
+* -- 6761
+:= -- 16474
+add.period$ -- 26
+call.type$ -- 26
+change.case$ -- 363
+chr.to.int$ -- 26
+cite$ -- 26
+duplicate$ -- 415
+empty$ -- 885
+format.name$ -- 444
+if$ -- 14237
+int.to.chr$ -- 5
+int.to.str$ -- 0
+missing$ -- 27
+newline$ -- 82
+num.names$ -- 264
+pop$ -- 95
+preamble$ -- 1
+purify$ -- 390
+quote$ -- 0
+skip$ -- 337
+stack$ -- 0
+substring$ -- 17477
+swap$ -- 71
+text.length$ -- 365
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 100
+warning$ -- 0
+while$ -- 588
+width$ -- 0
+write$ -- 327
+(There was 1 error message)

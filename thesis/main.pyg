@@ -1,0 +1,103 @@
+	cluster<-makeCluster(no_cores)
+	registerDoParallel(cluster)
+	clusterEvalQ(cluster,.libPaths("F:/nupak"))
+	clusterEvalQ(cluster,library(tseries))
+	clusterEvalQ(cluster,library(plm))
+	clusterEvalQ(cluster,library(foreach))
+	clusterExport(cluster,"setup")
+
+	par_panel_mc<-function(obs,ind,mc,rho){
+
+
+	# t_start,t_end,n_start,n_end,mc,rho_start,rho_end
+
+
+	message("Started computing at ", Sys.time())
+
+	starting_time<-proc.time()[[3]]
+
+	# Data Frame format: Rho, Obs, Ind, ADF-mean, ADF-sd, PP-mean, PP-sd, LLC-mean, LLC-sd, MW-mean, MW-sd, MC?
+
+	total<-(length(obs))*(length(ind))*(length(rho))
+	results<-data.frame(rho=numeric(total),observations=numeric(total),individuals=numeric(total),adf_mean=numeric(total),adf_sd=numeric(total),pp_mean=numeric(total),pp_sd=numeric(total),llc_mean=numeric(total),llc_sd=numeric(total),mw_mean=numeric(total),mw_sd=numeric(total),ips_mean=numeric(total),ips_sd=numeric(total))
+	#results<-data.frame(rho=numeric(),observations=numeric(),individuals=numeric(),adf_mean=numeric(),adf_sd=numeric(),pp_mean=numeric(),pp_sd=numeric(),llc_mean=numeric(),llc_sd=numeric(),mw_mean=numeric(),mw_sd=numeric())
+
+
+	count<-1
+	for(r in rho){
+	rho<-1-(r/1000)
+	for(a in obs){
+	for(b in ind){
+
+	adfs<-numeric(mc*b)
+	pps<-numeric(mc*b)
+	llc<-numeric(mc)
+	mw<-numeric(mc)
+	ips<-numeric(mc)
+
+	#new_var<-matrix(ncol=3,nrow=mc)
+
+	new_var<-foreach(i=1:mc,.packages=c("plm","tseries"),.combine=rbind) %dopar% {
+	panel<-setup(rho,a,b,0.1,0.3)
+	a_temp<-numeric(length(panel))
+	p_temp<-numeric(length(panel))
+	for(j in 1:length(panel)){
+	#test<-tseries::adf.test(panel[[j]])
+	#test2<-tseries::pp.test(panel[[j]])
+	a_temp[j*i]<-tseries::adf.test(panel[[j]])$p.value
+	p_temp[j*i]<-tseries::pp.test(panel[[j]])$p.value
+	}
+	#test3<-plm::purtest(panel,data=NULL,exo="trend",pmax=1,test="levinlin",lags="AIC")
+	#test4<-plm::purtest(panel,data=NULL,exo="trend",pmax=1,test="madwu",lags="AIC")
+	#test5<-plm::purtest(panel,data=NULL,exo="trend",pmax=1,test="ips",lags="AIC")
+	llc<-(plm::purtest(panel,data=NULL,exo="trend",pmax=1,test="levinlin",lags="AIC"))$statistic$p.value[[1]]
+	mw<-(plm::purtest(panel,data=NULL,exo="trend",pmax=1,test="madwu",lags="AIC"))$statistic$p.value[[1]]
+	ips<-(plm::purtest(panel,data=NULL,exo="trend",pmax=1,test="ips",lags="AIC"))$statistic$p.value[[1]]
+
+
+	#llc<-test3$statistic$p.value[[1]]
+	#mw<-test4$statistic$p.value[[1]]
+	#ips<-test5$statistic$p.value[[1]]
+	#a_mean<-mean(a_temp)
+	#p_mean<-mean(p_temp)
+
+	end<-c(llc,mw,ips,a_temp,p_temp) #,a_mean,p_mean)
+	rm(llc);rm(mw);rm(ips)
+
+	return(end)
+	}
+	#print(dim(new_var))
+	llc<-unname(new_var[,1])
+	#new_var<-new_var[,-1]
+	mw<-unname(new_var[,2])
+	ips<-unname(new_var[,3])
+	#rm(new_var)
+	new_var<-new_var[,-(1:4)]
+	#print(dim(new_var))
+	len<-length(new_var[1,])
+	half<-len/2
+	adfs<-unname(rbind(new_var[,1:half]))[1,]
+	#new_var<-new_var[,-(1:len)]
+	pps<-unname(rbind(new_var[,(half+1):len]))[1,]
+	#df<-data.frame(rho=rho,observations=a,individuals=b,llc_mean=mean(llc),llc_sd=sqrt(var(llc)),mw_mean=mean(mw),mw_sd=sqrt(var(mw)),ips_mean=mean(ips),ips_sd=sqrt(var(ips)))
+	df<-data.frame(rho=rho,observations=a,individuals=b,adf_mean=mean(adfs),adf_sd=sqrt(var(adfs)),pp_mean=mean(pps),pp_sd=sqrt(var(pps)),llc_mean=mean(llc),llc_sd=sqrt(var(llc)),mw_mean=mean(mw),mw_sd=sqrt(var(mw)),ips_mean=mean(ips),ips_sd=sqrt(var(ips)))
+	results[count,]<-df
+	rm(df)
+	#gc()
+	message("Finished ", count ," of ", (length(obs))*(length(ind))*(length(rho)))
+	count<-count+1
+	}
+	}
+	}
+
+	finished_time<-proc.time()[[3]]
+	time_to_complete<-finished_time - starting_time
+	message("Finished ",total*mc," computations in ", time_to_complete)
+	return(results)
+	}
+
+	par_test<-par_panel_mc(c(10,50,100,200,500,1000,5000),c(10,20),100,300)
+
+	stopCluster(cluster)
+	stopImplicitCluster()
+	#write.csv(par_test,"t8-25n2-100mc100-rho100-wIPS.csv")

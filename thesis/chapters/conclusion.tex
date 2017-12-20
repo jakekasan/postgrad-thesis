@@ -1,0 +1,14 @@
+\section{Summary of Findings}
+
+\subsection{Real Data}
+
+The results of the tests on the real data more or less showed that the processes were stationary. With the exception of the panels with a large T-dimension, which have comparable power to single time series tests $\cite{llc}$, all of the panels tested were shown to be stationary at a 5\% confidence level. The single time series tests, on the other hand, overwhelmingly indicated that the collection of time series in each panel had a unit root.
+
+
+\subsection{Simulation}
+
+The simulations showed that of the three tests considered, the Levin-Lin-Chu test offered the best balance of performance by correctly identifying stationary processes while at the same time failing to reject the null hypothesis of a unit root with processes that had a unit root. Although the Maddala-Wu exhibited the correct relationship between panel sizes and test power for $\rho = 0.5$, other situations showed that it tended towards type II errors. The Im-Pesaran-Shin test performed poorly in general, not displaying a clear relationship between the results of the test and the size of the panels lacks an explanation, except for the possibility of flawed implementation on the software side, similar to the one found with the Maddala-Wu implementation.
+
+\section{Concluding Remarks}
+
+This work has examined the claim that panel unit root tests offer greater power when compared to single time series, particularly in situations when $T \to 0$. The simulations performed showed that panel unit root tests more accurately reject or fail to reject the null hypothesis of a unit root than individual time series tests performed on the individuals in the panels. Therefore this work offers evidence to support the aforementioned claim. In the context of the real data, this project has shown that panel unit root tests add value irrespective of the application. If the data was tested with only the conventional time series unit root tests such as the Augmented Dickey-Fuller and Phillips-Perron, it could very well be concluded that the data generating process has a unit root and this would radically change any inferences to the data. The benefit of the panel unit root tests is that even if the time dimension is limited (which is often is with macroeconomic data), the power of the test can be significantly increased with the inclusion of the cross dimension, which is an easier proposition than increasing the time dimension. At no point did the results of the individual time series tests even approach those of the panel data tests, validating the claim that the panel unit root tests have superior power, especially in situations where $N \to \inf$.

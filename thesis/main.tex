@@ -1,0 +1,92 @@
+\documentclass[12pt]{report}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\graphicspath{ {img/} }
+\usepackage{blindtext}
+%\usepackage{harvard}
+\usepackage{lipsum}
+\usepackage{mathtools}
+\usepackage{listings} % to include R-code in appendix
+\usepackage{comment}
+\usepackage[sectionbib]{natbib} % doesnt work
+%\usepackage{float}
+%\usepackage[caption=false]{subfig}
+\usepackage{lmodern}
+\usepackage{caption}
+\usepackage{floatrow}
+\usepackage{pgfplots}
+%\usepackage{csquote}
+
+
+
+\title{
+	{Unit Root Tests for Panel Data}\\
+	{\large University of Strathclyde \linebreak}\\
+	{\includegraphics[scale=0.25]{university.jpg}}
+}
+\author{Jakub Kasan}
+\date{23rd August 2017}
+
+
+
+\begin{document}
+	\maketitle
+		\renewcommand{\bibname}{}
+	\begin{abstract}
+		Stationarity testing on single time series has existed for some time in mainstream literature, but panel data stationarity tests are a relatively new field, having only been introduced around the turn of the century. It is well known that for single time series, the conventional unit root tests such as the Augmented Dickey-Fuller and Phillips-Perron lack power when the series is shorter than 100-150 observations. This means that they are unlikely to be of any use in any venue where macroeconomic data is involved, as the frequency is likely to be monthly or quarterly, meaning that decades of data would be needed to overcome the low power of the traditional tests. This is the motivation behind panel data tests, which introduce a cross dimension, and therefore can overcome the data length limitation.
+		
+		This paper examines the claim that panel unit root tests add power by comparing results from both single time series and panel tests done on the same data, followed by a Monte Carlo simulation on a variety of data dimensions with controlled Data-Generating Processes. The tests utilized are the Augmented Dickey-Fuller and Phillips-Perron from the single time series tests and the Levin-Lin-Chu, Im-Persaran-Shin and Maddala-Wu from the panel data tests.
+		
+		We find that panel data tests add power when compared to single time series tests, especially when the time dimension is short, with the provision that the cross section is large (at least 50). Compared to each other, it is clear that the Levin-Lin-Chu performs best in terms of minimizing both Type I and Type II errors.
+		
+	\end{abstract}
+
+	\tableofcontents
+
+
+	\chapter{Introduction}
+	\input{chapters/introduction}
+	
+	\chapter{Literature Review}
+	\input{chapters/literature}
+	
+	\chapter{Data}
+	\input{chapters/data}
+	
+	\chapter{Methodology}
+	\input{chapters/methodology}
+	
+	\chapter{Results}
+	\input{chapters/results}
+	
+	\chapter{Evaluation}
+	\input{chapters/evaluation}
+	
+	\chapter{Conclusion}
+	\input{chapters/conclusion}
+	
+	
+	
+	\chapter{References}
+	%\bibliographystyle{rusnat}
+	\bibliographystyle{harvard.sty}
+	\bibliography{chapters/ref}
+
+	
+	
+	\appendix
+	
+	
+	
+	\chapter{Code}
+	\input{chapters/appendix}
+	
+	\chapter{Graphics}
+	\input{chapters/append_images}
+
+	
+	
+\end{document}
+
+

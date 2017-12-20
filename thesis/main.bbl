@@ -1,0 +1,138 @@
+\begin{thebibliography}{xx}
+
+\harvarditem{Bai \harvardand\ Ng}{2004}{panic04}
+Bai, J. \harvardand\ Ng, S.  \harvardyearleft 2004\harvardyearright , `A panic
+  attack on unit roots and cointegration', {\em Econometrica} {\bf
+  72}(4),~1127--1177.
+
+\harvarditem{Baltagi \harvardand\ Kao}{2001}{baltagi2001nonstationary}
+Baltagi, B.~H. \harvardand\ Kao, C.  \harvardyearleft 2001\harvardyearright ,
+  Nonstationary panels, cointegration in panels and dynamic panels: A survey,
+  {\em in} `Nonstationary panels, panel cointegration, and dynamic panels',
+  Emerald Group Publishing Limited, pp.~7--51.
+
+\harvarditem{Banerjee}{1999}{banerjee1999panel}
+Banerjee, A.  \harvardyearleft 1999\harvardyearright , `Panel data unit roots
+  and cointegration: an overview', {\em Oxford Bulletin of economics and
+  Statistics} {\bf 61}(S1),~607--629.
+
+\harvarditem{Choi}{2001}{choi2001unit}
+Choi, I.  \harvardyearleft 2001\harvardyearright , `Unit root tests for panel
+  data', {\em Journal of international money and Finance} {\bf
+  20}(2),~249--272.
+
+\harvarditem{Choi}{2002}{choi2002combination}
+Choi, I.  \harvardyearleft 2002\harvardyearright , `Combination unit root tests
+  for cross-sectionally correlated panels', {\em Econometric Theory and
+  Practice: Frontiers of Analysis and Applied Research} .
+
+\harvarditem{Davidson \harvardand\ MacKinnon}{2004}{davidson2004econometric}
+Davidson, R. \harvardand\ MacKinnon, J.~G.  \harvardyearleft
+  2004\harvardyearright , {\em Econometric theory and methods}, Vol.~5, Oxford
+  University Press New York.
+
+\harvarditem[Dickey et~al.]{Dickey, Bell \harvardand\
+  Miller}{1986}{dickey1986unit}
+Dickey, D.~A., Bell, W.~R. \harvardand\ Miller, R.~B.  \harvardyearleft
+  1986\harvardyearright , `Unit roots in time series models: Tests and
+  implications', {\em The American Statistician} {\bf 40}(1),~12--26.
+
+\harvarditem{Dickey \harvardand\ Fuller}{1979}{df}
+Dickey, D.~A. \harvardand\ Fuller, W.~A.  \harvardyearleft
+  1979\harvardyearright , `Distribution of the estimators for autoregressive
+  time series with a unit root', {\em Journal of the American statistical
+  association} {\bf 74}(366a),~427--431.
+
+\harvarditem{Fisher}{1925}{fisher}
+Fisher, R.  \harvardyearleft 1925\harvardyearright , {\em Statistical Methods
+  For Research Workers}, Cosmo study guides, Cosmo Publications.
+\newline\harvardurl{https://books.google.cz/books?id=4bTttAJR5kEC}
+
+\harvarditem{Hadri}{2000}{hadri2000testing}
+Hadri, K.  \harvardyearleft 2000\harvardyearright , `Testing for stationarity
+  in heterogeneous panel data', {\em The Econometrics Journal} {\bf
+  3}(2),~148--161.
+
+\harvarditem{Harris \harvardand\ Tzavalis}{1999}{harris1999inference}
+Harris, R.~D. \harvardand\ Tzavalis, E.  \harvardyearleft 1999\harvardyearright
+  , `Inference for unit roots in dynamic panels where the time dimension is
+  fixed', {\em Journal of econometrics} {\bf 91}(2),~201--226.
+
+\harvarditem{Hlouskova \harvardand\ Wagner}{2006}{hlouskova}
+Hlouskova, J. \harvardand\ Wagner, M.  \harvardyearleft 2006\harvardyearright ,
+  `The performance of panel unit root and stationarity tests: results from a
+  large scale simulation study', {\em Econometric Reviews} {\bf
+  25}(1),~85--116.
+
+\harvarditem{Hsiao}{2007}{hsiao}
+Hsiao, C.  \harvardyearleft 2007\harvardyearright , `Panel data
+  analysis—advantages and challenges', {\em Test} {\bf 16}(1),~1--22.
+
+\harvarditem{Hurlin \harvardand\ Mignon}{2007}{hurlin}
+Hurlin, C. \harvardand\ Mignon, V.  \harvardyearleft 2007\harvardyearright ,
+  `Second generation panel unit root tests'.
+
+\harvarditem[Im et~al.]{Im, Pesaran \harvardand\ Shin}{2003}{ips}
+Im, K.~S., Pesaran, M.~H. \harvardand\ Shin, Y.  \harvardyearleft
+  2003\harvardyearright , `Testing for unit roots in heterogeneous panels',
+  {\em Journal of econometrics} {\bf 115}(1),~53--74.
+
+\harvarditem[Kwiatkowski et~al.]{Kwiatkowski, Phillips, Schmidt \harvardand\
+  Shin}{1992}{kpss}
+Kwiatkowski, D., Phillips, P.~C., Schmidt, P. \harvardand\ Shin, Y.
+  \harvardyearleft 1992\harvardyearright , `Testing the null hypothesis of
+  stationarity against the alternative of a unit root: How sure are we that
+  economic time series have a unit root?', {\em Journal of econometrics} {\bf
+  54}(1-3),~159--178.
+
+\harvarditem[Levin et~al.]{Levin, Lin \harvardand\ Chu}{2002}{llc}
+Levin, A., Lin, C.-F. \harvardand\ Chu, C.-S.~J.  \harvardyearleft
+  2002\harvardyearright , `Unit root tests in panel data: asymptotic and
+  finite-sample properties', {\em Journal of econometrics} {\bf 108}(1),~1--24.
+
+\harvarditem{Maddala \harvardand\ Wu}{1999}{mw}
+Maddala, G.~S. \harvardand\ Wu, S.  \harvardyearleft 1999\harvardyearright , `A
+  comparative study of unit root tests with panel data and a new simple test',
+  {\em Oxford Bulletin of Economics and statistics} {\bf 61}(S1),~631--652.
+
+\harvarditem{Moon \harvardand\ Perron}{2004}{moon2004testing}
+Moon, H.~R. \harvardand\ Perron, B.  \harvardyearleft 2004\harvardyearright ,
+  `Testing for a unit root in panels with dynamic factors', {\em Journal of
+  econometrics} {\bf 122}(1),~81--126.
+
+\harvarditem{Ng \harvardand\ Perron}{1995}{ng1995unit}
+Ng, S. \harvardand\ Perron, P.  \harvardyearleft 1995\harvardyearright , `Unit
+  root tests in arma models with data-dependent methods for the selection of
+  the truncation lag', {\em Journal of the American Statistical Association}
+  {\bf 90}(429),~268--281.
+
+\harvarditem{Oh}{1996}{oh1996purchasing}
+Oh, K.-Y.  \harvardyearleft 1996\harvardyearright , `Purchasing power parity
+  and unit root tests using panel data', {\em Journal of International Money
+  and Finance} {\bf 15}(3),~405--418.
+
+\harvarditem{Phillips \harvardand\ Perron}{1988}{pp}
+Phillips, P.~C. \harvardand\ Perron, P.  \harvardyearleft 1988\harvardyearright
+  , `Testing for a unit root in time series regression', {\em Biometrika} {\bf
+  75}(2),~335--346.
+
+\harvarditem{Phillips \harvardand\ Sul}{2003}{phillips2003dynamic}
+Phillips, P.~C. \harvardand\ Sul, D.  \harvardyearleft 2003\harvardyearright ,
+  `Dynamic panel estimation and homogeneity testing under cross section
+  dependence', {\em The Econometrics Journal} {\bf 6}(1),~217--259.
+
+\harvarditem{Said \harvardand\ Dickey}{1984}{said1984testing}
+Said, S.~E. \harvardand\ Dickey, D.~A.  \harvardyearleft 1984\harvardyearright
+  , `Testing for unit roots in autoregressive-moving average models of unknown
+  order', {\em Biometrika} {\bf 71}(3),~599--607.
+
+\harvarditem{Schwert}{1989}{schwert}
+Schwert, W.  \harvardyearleft 1989\harvardyearright , `Test for unit roots: A
+  monte carlo investigation', {\em Journal of Business and Economic Statistics}
+  {\bf 7},~147--159.
+
+\harvarditem{Smith}{2000}{smith}
+Smith, R.~P.  \harvardyearleft 2000\harvardyearright , Estimation and inference
+  with non-stationary panel time-series data, Technical report, mimeo.
+
+\end{thebibliography}
